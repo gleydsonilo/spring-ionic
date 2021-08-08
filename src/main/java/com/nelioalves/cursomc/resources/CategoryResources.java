@@ -25,8 +25,8 @@ public class CategoryResources {
 
 		Optional<Category> cat = categoryService.find(id);
 
-		Category cat1 = new Category(1, "Informática");
-		Category cat2 = new Category(2, "Escritório");
+		Category cat1 = new Category("Informática");
+		Category cat2 = new Category("Escritório");
 
 		List<Category> list = new ArrayList<>();
 

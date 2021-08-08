@@ -1,22 +1,19 @@
 package com.nelioalves.cursomc.domain;
 
-import com.nelioalves.cursomc.services.CategoryService;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
 @Entity
 public class Category implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -24,5 +21,9 @@ public class Category implements Serializable {
     private Integer id;
 
     @EqualsAndHashCode.Exclude
+    @NonNull
     private String name;
+
+    @ManyToMany(mappedBy = "categories")
+    private List<Product> products = new ArrayList<>();
 }
