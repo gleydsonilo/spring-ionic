@@ -1,9 +1,9 @@
 package com.nelioalves.cursomc.repositories;
 
-import com.nelioalves.cursomc.domain.Product;
+import com.nelioalves.cursomc.domain.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface CityRepository extends JpaRepository<City, Integer> {
 }

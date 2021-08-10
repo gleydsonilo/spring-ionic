@@ -1,7 +1,7 @@
 package com.nelioalves.cursomc.services;
 
 import com.nelioalves.cursomc.domain.Category;
-import com.nelioalves.cursomc.repositories.CategoryRepositoy;
+import com.nelioalves.cursomc.repositories.CategoryRepository;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.Optional;
 public class CategoryService {
 
     @Autowired
-    private CategoryRepositoy categoryRepository;
+    private CategoryRepository categoryRepository;
 
     public Category find(Integer id){
         Optional<Category> cat = categoryRepository.findById(id);

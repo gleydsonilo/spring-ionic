@@ -1,9 +1,13 @@
 package com.nelioalves.cursomc;
 
 import com.nelioalves.cursomc.domain.Category;
+import com.nelioalves.cursomc.domain.City;
 import com.nelioalves.cursomc.domain.Product;
-import com.nelioalves.cursomc.repositories.CategoryRepositoy;
+import com.nelioalves.cursomc.domain.State;
+import com.nelioalves.cursomc.repositories.CategoryRepository;
+import com.nelioalves.cursomc.repositories.CityRepository;
 import com.nelioalves.cursomc.repositories.ProductRepository;
+import com.nelioalves.cursomc.repositories.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,10 +19,16 @@ import java.util.Arrays;
 public class CursomcApplication implements CommandLineRunner {
 
 	@Autowired
-	private CategoryRepositoy categoryRepositoy;
+	private CategoryRepository categoryRepository;
 
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private StateRepository stateRepository;
+
+	@Autowired
+	private CityRepository cityRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -26,6 +36,7 @@ public class CursomcApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
 		Category cat1 = new Category("Informática");
 		Category cat2 = new Category("Escritório");
 
@@ -40,7 +51,23 @@ public class CursomcApplication implements CommandLineRunner {
 		p2.getCategories().addAll(Arrays.asList(cat1, cat2));
 		p3.getCategories().addAll(Arrays.asList(cat1));
 
-		categoryRepositoy.saveAll(Arrays.asList(cat1, cat2));
+		categoryRepository.saveAll(Arrays.asList(cat1, cat2));
 		productRepository.saveAll(Arrays.asList(p1, p2, p3));
+
+
+
+		State st1 = new State("Minas Gerais");
+		State st2 = new State("São Paulo");
+
+		City c1 = new City("Uberlandia", st1);
+		City c2 = new City("São Paulo", st2);
+		City c3 = new City("Campinas", st2);
+
+		st1.getCities().addAll(Arrays.asList(c1));
+		st2.getCities().addAll(Arrays.asList(c2, c3));
+
+		stateRepository.saveAll(Arrays.asList(st1, st2));
+		cityRepository.saveAll(Arrays.asList(c1, c2, c3));
+
 	}
 }

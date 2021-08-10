@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @RequiredArgsConstructor
 public class Product implements Serializable {
@@ -19,18 +19,16 @@ public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Integer id;
 
-    @EqualsAndHashCode.Exclude
     @NonNull
     private String name;
 
-    @EqualsAndHashCode.Exclude
     @NonNull
     private Double price;
 
     @JsonBackReference
-    @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(name = "PRODUCT_CATEGORY",
             joinColumns = @JoinColumn(name = "product_id"),

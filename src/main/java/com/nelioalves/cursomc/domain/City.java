@@ -1,21 +1,18 @@
 package com.nelioalves.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-@NoArgsConstructor
 @RequiredArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Category implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class City implements Serializable {
+    public static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +22,9 @@ public class Category implements Serializable {
     @NonNull
     private String name;
 
-    @JsonManagedReference
-    @ManyToMany(mappedBy = "categories")
-    private List<Product> products = new ArrayList<>();
+    @NonNull
+    @ManyToOne
+    @JoinColumn(name = "state_id")
+    private State state;
+
 }

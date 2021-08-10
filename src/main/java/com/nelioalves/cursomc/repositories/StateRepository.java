@@ -1,9 +1,9 @@
 package com.nelioalves.cursomc.repositories;
 
-import com.nelioalves.cursomc.domain.Category;
+import com.nelioalves.cursomc.domain.State;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryRepositoy extends JpaRepository<Category, Integer> {
+public interface StateRepository extends JpaRepository<State, Integer> {
 }
