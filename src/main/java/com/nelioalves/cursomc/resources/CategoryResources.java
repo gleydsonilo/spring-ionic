@@ -19,21 +19,10 @@ public class CategoryResources {
 
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-
-		Optional<Category> cat = categoryService.find(id);
-
-		Category cat1 = new Category("Informática");
-		Category cat2 = new Category("Escritório");
-
-		List<Category> list = new ArrayList<>();
-
-		list.add(cat1);
-		list.add(cat2);
-
+			Optional<Category> cat = Optional.ofNullable(categoryService.find(id));
 		return ResponseEntity.ok().body(cat);
 	}
-
 }

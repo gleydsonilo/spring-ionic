@@ -1,5 +1,6 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class Product implements Serializable {
     @NonNull
     private Double price;
 
+    @JsonBackReference
     @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(name = "PRODUCT_CATEGORY",
