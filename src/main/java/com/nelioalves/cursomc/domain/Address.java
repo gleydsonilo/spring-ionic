@@ -1,5 +1,6 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class Address implements Serializable {
 
     @NonNull private String cep;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "client_id")
     @NonNull private Client client;
