@@ -6,7 +6,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -35,4 +37,16 @@ public class Product implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> categories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderedItem> itens = new HashSet<>();
+
+    public List<Demand> getDemands(){
+        List<Demand> list = new ArrayList<>();
+        for (OrderedItem x : itens){
+            list.add(x.getDemand());
+        }
+        return list;
+    }
+
 }
