@@ -14,8 +14,8 @@ Tópicos abordados:
 - Classe de associação
 - Herança
 - Enumerações
-- Atributos Embedded (ItemPedidoPK)
-- Coleções ElementCollection (telefones de um cliente)
+- Atributos Embedded
+- Coleções ElementCollection
 
 ## Requisitos
 
@@ -29,13 +29,13 @@ Baixar as dependências: na raiz do projeto: executar o comando `mvn clean insta
 
 Para rodar a aplicação localmente, executar o metodo `main` da classe [CursomcApplication.java](https://github.com/gleydsonilo/cursomc/blob/main/src/main/java/com/nelioalves/cursomc/CursomcApplication.java).
 
-#Endpoint disponíveis
+# Endpoint disponíveis
 
-##Obter Clientes por ID
+## Obter Clientes por ID
 **GET:** `http://localhost:8080/client/{id}`
 
-##Obter Pedidos por ID
+## Obter Pedidos por ID
 **GET:** `http://localhost:8080/demands/{id}`
 
-##Obter Categorias de Itens por ID
+## Obter Categorias de Itens por ID
 **GET:** `http://localhost:8080/categories/{id}`
