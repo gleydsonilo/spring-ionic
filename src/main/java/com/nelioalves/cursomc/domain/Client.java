@@ -1,5 +1,4 @@
 package com.nelioalves.cursomc.domain;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nelioalves.cursomc.domain.enums.ClientType;
 import lombok.*;
@@ -55,7 +54,5 @@ public class Client implements Serializable {
 
     public ClientType getClientType() {
         return ClientType.toEnum(clientType);
-
-
     }
 }
