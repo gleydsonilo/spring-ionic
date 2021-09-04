@@ -1,9 +1,7 @@
 package com.nelioalves.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -26,11 +24,9 @@ public class Demand implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instant;
 
-    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "demand")
     private Payment payment;
 
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;

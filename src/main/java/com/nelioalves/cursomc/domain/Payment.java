@@ -1,6 +1,6 @@
 package com.nelioalves.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nelioalves.cursomc.domain.enums.StatePayment;
 import lombok.*;
 
@@ -20,7 +20,7 @@ public abstract class Payment implements Serializable {
 
     private Integer state;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "demand_id")
     @MapsId

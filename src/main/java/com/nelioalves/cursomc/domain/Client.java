@@ -1,7 +1,5 @@
 package com.nelioalves.cursomc.domain;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nelioalves.cursomc.domain.enums.ClientType;
 import lombok.*;
 
@@ -31,7 +29,6 @@ public class Client implements Serializable {
 
     private Integer clientType;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "client")
     @Getter @Setter private List<Address> addresses = new ArrayList<>();
 
@@ -39,7 +36,7 @@ public class Client implements Serializable {
     @CollectionTable(name = "PHONE")
     @Getter @Setter private Set<String> phones = new HashSet<>();
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     @Getter @Setter private List<Demand> demands = new ArrayList<>();
 
@@ -57,7 +54,5 @@ public class Client implements Serializable {
 
     public ClientType getClientType() {
         return ClientType.toEnum(clientType);
-
-
     }
 }
