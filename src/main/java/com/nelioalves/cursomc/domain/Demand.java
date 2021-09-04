@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -31,6 +33,9 @@ public class Demand implements Serializable {
     @ManyToOne
     @JoinColumn(name = "delivery_address_id")
     private Address deliveryAddress;
+
+    @OneToMany(mappedBy = "id.demand")
+    private Set<OrderedItem> itens = new HashSet<>();
 
     public Demand(Integer id, Date instant, Client client, Address deliveryAddress) {
         this.id = id;
