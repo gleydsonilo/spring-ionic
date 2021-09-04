@@ -1,5 +1,6 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ import java.io.Serializable;
 public class OrderedItem implements Serializable {
     private static final long SerialVersionUID = 1L;
 
+    @JsonIgnore
     @EmbeddedId
     @EqualsAndHashCode.Include
     private OrderedItemPK id = new OrderedItemPK();
@@ -33,6 +35,7 @@ public class OrderedItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public Demand getDemand(){
         return id.getDemand();
     }

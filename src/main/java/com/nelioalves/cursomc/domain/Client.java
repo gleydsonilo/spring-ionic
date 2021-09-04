@@ -1,5 +1,6 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.nelioalves.cursomc.domain.enums.ClientType;
 import lombok.*;
@@ -38,6 +39,7 @@ public class Client implements Serializable {
     @CollectionTable(name = "PHONE")
     @Getter @Setter private Set<String> phones = new HashSet<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy = "client")
     @Getter @Setter private List<Demand> demands = new ArrayList<>();
 
