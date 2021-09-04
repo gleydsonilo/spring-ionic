@@ -2,12 +2,14 @@ package com.nelioalves.cursomc;
 
 import com.nelioalves.cursomc.domain.*;
 import com.nelioalves.cursomc.domain.enums.ClientType;
+import com.nelioalves.cursomc.domain.enums.StatePayment;
 import com.nelioalves.cursomc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -30,6 +32,12 @@ public class CursomcApplication implements CommandLineRunner {
 
 	@Autowired
 	private AddressRepository addressRepository;
+
+	@Autowired
+	private DemandRepository demandRepository;
+
+	@Autowired
+	private PaymentRepository paymentRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -81,7 +89,21 @@ public class CursomcApplication implements CommandLineRunner {
 		clientRepository.saveAll(Arrays.asList(cli1));
 		addressRepository.saveAll(Arrays.asList(ad1, ad2));
 
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
+		Demand ped1 = new Demand(null, sdf.parse("30/09/2017 10:32"), cli1, ad1);
+		Demand ped2 = new Demand(null, sdf.parse("10/10/2017 19:35"), cli1, ad2);
+
+		Payment pagto1 = new PaymentCard(null, StatePayment.QUITADO, ped1, 6);
+		ped1.setPayment(pagto1);
+
+		Payment pagto2 = new PaymentSlip(null, StatePayment.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
+		ped2.setPayment(pagto2);
+
+		cli1.getDemands().addAll(Arrays.asList(ped1, ped2));
+
+		demandRepository.saveAll(Arrays.asList(ped1, ped2));
+		paymentRepository.saveAll(Arrays.asList(pagto1, pagto2));
 
 
 	}
