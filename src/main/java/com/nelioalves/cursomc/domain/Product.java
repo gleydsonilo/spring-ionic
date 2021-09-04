@@ -1,6 +1,7 @@
 package com.nelioalves.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,7 +31,7 @@ public class Product implements Serializable {
     @NonNull
     private Double price;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "PRODUCT_CATEGORY",
             joinColumns = @JoinColumn(name = "product_id"),
@@ -38,9 +39,11 @@ public class Product implements Serializable {
     )
     private List<Category> categories = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.product")
     private Set<OrderedItem> itens = new HashSet<>();
 
+    @JsonIgnore
     public List<Demand> getDemands(){
         List<Demand> list = new ArrayList<>();
         for (OrderedItem x : itens){

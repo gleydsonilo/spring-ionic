@@ -1,5 +1,6 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Demand implements Serializable {
     @EqualsAndHashCode.Include
     private Integer id;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instant;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "demand")
