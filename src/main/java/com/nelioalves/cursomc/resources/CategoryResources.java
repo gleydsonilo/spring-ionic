@@ -27,11 +27,18 @@ public class CategoryResources {
 
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Category obj){
-		Optional<Category> cat = Optional.ofNullable(categoryService.insert(obj));
+		categoryService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}")
 				.buildAndExpand(obj.getId())
 				.toUri();
 		return ResponseEntity.created(uri).build();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Category obj, @PathVariable Integer id){
+		obj.setId(id);
+		categoryService.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 }

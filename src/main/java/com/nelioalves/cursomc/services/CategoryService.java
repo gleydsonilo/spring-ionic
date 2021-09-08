@@ -17,11 +17,16 @@ public class CategoryService {
 
     public Category find(Integer id){
         Optional<Category> cat = categoryRepository.findById(id);
-        return cat.orElseThrow(() -> new ObjectNotFoundException("Objetct not found!" + "ID: " + id + " Type: " + Category.class.getName()));
+        return cat.orElseThrow(() -> new ObjectNotFoundException("Object not found!" + "ID: " + id + " Type: " + Category.class.getName()));
     }
 
     public Category insert(Category obj){
         obj.setId(null);
+        return categoryRepository.save(obj);
+    }
+
+    public Category update(Category obj) {
+        find(obj.getId());
         return categoryRepository.save(obj);
     }
 }
