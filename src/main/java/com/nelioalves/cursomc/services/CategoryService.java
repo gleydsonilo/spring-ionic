@@ -4,6 +4,7 @@ import com.nelioalves.cursomc.domain.Category;
 import com.nelioalves.cursomc.repositories.CategoryRepository;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,4 +19,10 @@ public class CategoryService {
         Optional<Category> cat = categoryRepository.findById(id);
         return cat.orElseThrow(() -> new ObjectNotFoundException("Objetct not found!" + "ID: " + id + " Type: " + Category.class.getName()));
     }
+
+    public Category insert(Category obj){
+        obj.setId(null);
+        return categoryRepository.save(obj);
+    }
 }
+
