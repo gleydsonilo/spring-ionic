@@ -2,8 +2,10 @@ package com.nelioalves.cursomc.services;
 
 import com.nelioalves.cursomc.domain.Category;
 import com.nelioalves.cursomc.repositories.CategoryRepository;
+import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +34,12 @@ public class CategoryService {
 
     public void delete(Integer id) {
         find(id);
-        categoryRepository.deleteById(id);
+        try {
+            categoryRepository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("You can't delete a category that has products");
+        }
     }
 }
 
